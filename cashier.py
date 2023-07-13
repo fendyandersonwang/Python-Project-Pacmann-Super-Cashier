@@ -17,11 +17,12 @@ class Transaction:
     print("Keranjang:")
 
     df = pd.DataFrame(self.cart)
-    headers = ['Nama Item', 'Harga', 'Kuantitas', 'Total']
+    headers = ['Nama Item', 'Kuantitas', 'Harga', 'Total']
     print(tabulate(df.T, headers))
     for key in self.cart:
       self.sum += self.cart[key][2]
     print(f'Total = Rp{self.sum:,}')
+    self.sum = 0
     print()
 
   def add_item(self, item_name, item_price, item_qty):
@@ -47,14 +48,14 @@ class Transaction:
     """
     Mengupdate harga item dalam keranjang
     """
-    self.cart[item_name][0] = updated_item_price
+    self.cart[item_name][1] = updated_item_price
     print(f"Harga Item {item_name} telah diupdate menjadi {updated_item_price}")
 
   def update_item_qty(self, item_name, updated_item_qty):
     """
     Mengupdate kuantitas item dalam keranjang
     """
-    self.cart[item_name][1] = updated_item_qty
+    self.cart[item_name][0] = updated_item_qty
     print(f"Kuantitas Item {item_name} telah diupdate menjadi {updated_item_qty}")
 
   def delete_item(self, item_name):
